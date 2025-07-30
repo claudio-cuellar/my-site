@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 
@@ -24,6 +25,10 @@ class Post(models.Model):
         indexes = [
             models.Index(fields=['-publish'])
         ]
+
+    author = models.ForeignKey(User,
+                               on_delete=models.CASCADE,
+                               related_name='blog_posts')
 
     def __str__(self):
         return self.title
