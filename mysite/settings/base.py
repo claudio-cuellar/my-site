@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'rest_framework',
     'djoser',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
