@@ -56,10 +56,10 @@ jobs:
             pip install -r requirements.txt
 
             # Apply DB migrations
-            python manage.py migrate --noinput
+            python3 manage.py migrate --noinput
 
             # Collect static files
-            python manage.py collectstatic --noinput
+            python3 manage.py collectstatic --noinput
 
             # Setup Gunicorn systemd service if missing
             if [ ! -f "/etc/systemd/system/gunicorn.service" ]; then
