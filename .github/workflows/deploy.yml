@@ -29,12 +29,11 @@ jobs:
             sudo apt-get upgrade -y
 
             # Install prerequisites
-            sudo apt-get install -y python3 python3-pip python3-venv \
-              nginx postgresql-client git
+            sudo apt-get install -y python3 python3-pip python3-venv
 
             # Create project directory if missing
-            mkdir -p /home/ubuntu/backend
-            cd /home/ubuntu/backend
+            mkdir -p /home/ubuntu/api
+            cd /home/ubuntu/api
 
             # Clone repo if not exists
             if [ ! -d ".git" ]; then
@@ -70,8 +69,8 @@ jobs:
               [Service]
               User=ubuntu
               Group=www-data
-              WorkingDirectory=/home/ubuntu/backend
-              ExecStart=/home/ubuntu/backend/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/backend/gunicorn.sock mysite.wsgi:application
+              WorkingDirectory=/home/ubuntu/api
+              ExecStart=/home/ubuntu/api/venv/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/api/gunicorn.sock mysite.wsgi:application
 
               [Install]
               WantedBy=multi-user.target" | sudo tee /etc/systemd/system/gunicorn.service
